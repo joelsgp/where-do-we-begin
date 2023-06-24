@@ -6,11 +6,14 @@ import requests
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
 
 
-def get_episodes() -> dict:
+def get_episodes() -> list[dict]:
     url = URL_RSS
     with requests.get(url, stream=True) as response:
+        response.raw.decode_content = True
         parsed = podcastparser.parse(url, response.raw)
-    return parsed
+
+    episodes = parsed["episodes"]
+    return episodes
 
 
 def download(url: str, file_path: str):
