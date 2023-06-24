@@ -1,2 +1,7 @@
-*.mp3
+# downloading
 *.part
+# downloaded
+*.jpg
+*.mp3
+# converted
+*.mp4
