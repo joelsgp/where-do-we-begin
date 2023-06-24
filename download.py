@@ -27,21 +27,29 @@ def download(url: str, file_path: str):
 
 def download_episode(episode: dict):
     title = episode["title"]
+    print(f"doing episode '{title}'")
 
     mp3_url = episode["enclosures"][0]["url"]
     mp3_path = f"{title}.mp3"
+    # easier to skip on spag entirely
+    print("downloading audio")
     download(mp3_url, mp3_path)
+    print("downloaded audio")
 
     jpg_url = episode["episode_art_url"]
     jpg_path = f"{title}.jpg"
+    print("downloading image")
     download(jpg_url, jpg_path)
+    print("downloaded image")
 
     # todo fuse em with ffmpeg
     # todo embed metadata - author,, date etc.
 
 
 def main():
+    print("getting episode list")
     episodes = get_episodes()
+    print("got episode list")
     for ep in episodes:
         download_episode(ep)
 
