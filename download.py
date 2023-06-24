@@ -1,12 +1,23 @@
+from datetime import datetime
 from typing import NamedTuple
 
 import bs4
 import requests
 
+
+# todo publish module for easy future users?
+# ok nvm scratch this file and try this instead
+# https://github.com/gpodder/podcastparser
+
+
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
 
 
 class Episode(NamedTuple):
+    title: str
+    description: str
+    link: str
+    timestamp: datetime
     mp3_url: str
     jpg_url: str
 
