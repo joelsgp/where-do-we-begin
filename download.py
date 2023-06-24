@@ -8,6 +8,8 @@ URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
 
 def get_episodes() -> list[dict]:
     url = URL_RSS
+    # https://podcastparser.readthedocs.io/en/latest/#example
+    # https://podcastparser.readthedocs.io/en/latest/#podcastparser.parse
     with requests.get(url, stream=True) as response:
         response.raw.decode_content = True
         parsed = podcastparser.parse(url, response.raw)
@@ -24,16 +26,18 @@ def download(url: str, file_path: str):
 
 
 def download_episode(episode: dict):
-    # todo switch from object to podcastparser dict
-    mp3_url = episode.mp3_url
-    mp3_path = "test.mp3"  # todo
+    title = episode["title"]
+
+    mp3_url = episode["enclosures"][0]["url"]
+    mp3_path = f"{title}.mp3"
     download(mp3_url, mp3_path)
 
-    jpg_url = episode.jpg_url
-    jpg_path = "test.jpg"  # todo
+    jpg_url = episode["episode_art_url"]
+    jpg_path = f"{title}.jpg"
     download(jpg_url, jpg_path)
 
     # todo fuse em with ffmpeg
+    # todo embed metadata - author,, date etc.
 
 
 def main():
