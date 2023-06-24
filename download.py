@@ -1,10 +1,16 @@
+from typing import NamedTuple
+
 import bs4
 import requests
 
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
 
-# mp3 url, jpg url
-Episode = tuple[str, str]
+
+class Episode(NamedTuple):
+    mp3_url: str
+    jpg_url: str
+
+
 Episodes = list[Episode]
 Items = list[bs4.Tag]
 
@@ -28,7 +34,7 @@ def episodes_from_items(items: Items) -> Episodes:
         image = it.find("itunes:image")
         jpg_url = image.attrs["href"]
 
-        ep = (mp3_url, jpg_url)
+        ep = Episode(mp3_url, jpg_url)
         episodes.append(ep)
     
     return episodes
