@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 
-from datetime import datetime
-from typing import NamedTuple
-
 import podcastparser
 import requests
 
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
-
 
 
 def get_episodes() -> dict:
@@ -20,7 +16,7 @@ def get_episodes() -> dict:
 def download(url: str, file_path: str):
     with requests.get(url, stream=True) as response:
         with open(file_path, "wb") as file:
-            for chunk in response.iter_content:
+            for chunk in response.iter_content():
                 file.write(chunk)
 
 
@@ -39,6 +35,7 @@ def download_episode(episode: dict):
 
 def main():
     episodes = get_episodes()
+    print(episodes)
     # for ep in episodes:
     # todo
 
