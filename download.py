@@ -36,11 +36,27 @@ def episodes_from_items(items: Items) -> Episodes:
 
         ep = Episode(mp3_url, jpg_url)
         episodes.append(ep)
-    
+
     return episodes
 
 
+def download(url: str, file_path: str):
+    with requests.get(url, stream=True) as response:
+        with open(file_path, "wb") as file:
+            for chunk in response.iter_content:
+                file.write(chunk)
+
+
 def download_episode(episode: Episode):
-    mp3_url, jpg_url = episode
-    with requests.get(mp3_url, stream=True) as response:
-        pass  # todo
+    mp3_url = episode.mp3_url
+    mp3_path = "test.mp3"  # todo
+    download(mp3_url, mp3_path)
+
+    jpg_url = episode.jpg_url
+    jpg_path = "test.jpg"  # todo
+    download(jpg_url, jpg_path)
+
+    # todo fuse em with ffmpeg
+
+
+# todo main functions
