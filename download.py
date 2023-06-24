@@ -17,7 +17,7 @@ Items = list[bs4.Tag]
 
 def get_items() -> Items:
     response = requests.get(URL_RSS)
-    soup = bs4.BeautifulSoup(response.content)
+    soup = bs4.BeautifulSoup(response.content, features="html.parser")
 
     channel = soup.find("channel")
     items = channel.find_all("item")
