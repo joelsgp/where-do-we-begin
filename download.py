@@ -42,9 +42,8 @@ def download_episode(episode: dict):
 
 def main():
     episodes = get_episodes()
-    print(episodes)
-    # for ep in episodes:
-    # todo
+    for ep in episodes:
+        download_episode(ep)
 
 
 if __name__ == "__main__":
