@@ -22,7 +22,10 @@ def get_episodes() -> Episodes:
     return episodes
 
 
-# def sort_episodes(episodes: Episodes):
+def sort_episodes(episodes: Episodes, reverse: bool = False):
+    # gameclam and elden ring eps don't have em
+    # print(l := list(ep for ep in episodes if not ep.get("number")))
+    episodes.sort(key=lambda ep: ep["number"], reverse=reverse)
 
 
 def get_download_urls(episodes: Episodes):
@@ -51,10 +54,11 @@ def main():
     print("got episode list")
 
     print("writing download urls to file")
+    sort_episodes(episodes)
     urls = get_download_urls(episodes)
-    urls = (u + "\n" for u in urls)
+    lines = (u + "\n" for u in urls)
     with open(URLS_FILE, "w") as file:
-        file.writelines(urls)
+        file.writelines(lines)
     print("wrote download urls to file")
 
 
