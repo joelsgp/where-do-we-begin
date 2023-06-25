@@ -1,36 +1,32 @@
 #!/usr/bin/env python
 
 import re
+from pathlib import Path
 
 import webvtt
+from webvtt import Caption
 
-sub_file = "subtitles/test.sbv"
-speakers = [
-    "Baaulp",
-    "Gir",
-    "Log",
-    "Trog",
-    "Wayne",
-]
-
-speakers_pipes = "|".join(speakers)
-speaker_label = re.compile(f"^({speakers_pipes}): ")
-
-caps = webvtt.from_sbv(sub_file)
-
-# split captions by speaker
-caps_by_speaker = {sp: [] for sp in speakers}
-speaker = ""
-for caption in caps:
-    match = speaker_label.match(caption.text)
-    if match:
-        speaker = match.group(1)
-
-    if speaker:
-        caps_by_speaker[speaker].append(caption)
+DIRECTORY_LABELS = Path("labels/")
 
 
-def captions_to_label_track(captions: list[webvtt.Caption]) -> list[str]:
+def filter_captions_by_speaker(speakers: list[str], captions: list[Caption]) -> dict[str, list[Caption]]:
+    speakers_pipes = "|".join(speakers)
+    speaker_label = re.compile(f"^({speakers_pipes}): ")
+
+    caps_by_speaker = {sp: [] for sp in speakers}
+    speaker = ""
+    for cap in captions:
+        match = speaker_label.match(cap.text)
+        if match:
+            speaker = match.group(1)
+
+        if speaker:
+            caps_by_speaker[speaker].append(cap)
+
+    return caps_by_speaker
+
+
+def captions_to_label_track(captions: list[Caption]) -> list[str]:
     # https://manual.audacityteam.org/man/importing_and_exporting_labels.html
     labels = []
     for cap in captions:
@@ -39,7 +35,26 @@ def captions_to_label_track(captions: list[webvtt.Caption]) -> list[str]:
     return labels
 
 
-for name, captions in caps_by_speaker.items():
-    with open(f"labels/{name}.txt", "w") as file:
-        label_lines = captions_to_label_track(captions)
-        file.writelines(label_lines)
+def main():
+    # test values
+    sub_file = "subtitles/test.sbv"
+    speakers = [
+        "Baaulp",
+        "Gir",
+        "Log",
+        "Trog",
+        "Wayne",
+    ]
+    # load captions
+    captions = webvtt.from_sbv(sub_file)
+
+    # filter
+    caps_by_speaker = filter_captions_by_speaker(speakers, captions)
+
+    # write to label tracks
+    DIRECTORY_LABELS.mkdir(exist_ok=True)
+    for name, captions in caps_by_speaker.items():
+        file_path = DIRECTORY_LABELS.joinpath(name).with_suffix(".txt")
+        with open(file_path, "w") as file:
+            label_lines = captions_to_label_track(captions)
+            file.writelines(label_lines)
