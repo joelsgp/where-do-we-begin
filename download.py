@@ -46,6 +46,8 @@ def get_download_urls(episodes: Episodes):
     return urls
 
 
+# todo?
+# this entire feature might be gratuitous
 def get_metadata_arguments(episode: dict) -> list[str]:
     # https://ffmpeg.org/doxygen/trunk/group__metadata__api.html
     mapping = {

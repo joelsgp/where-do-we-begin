@@ -4,3 +4,8 @@
 *.mp3
 # converted
 *.mp4
+
+downloads/
+edit/
+labels/
+merged/
