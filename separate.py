@@ -25,6 +25,8 @@ for caption in caps:
     match = speaker_label.match(caption.text)
     if match:
         speaker = match.group(1)
-    caps_by_speaker[speaker].append(caption)
+
+    if speaker:
+        caps_by_speaker[speaker].append(caption)
 
 print(caps_by_speaker)
