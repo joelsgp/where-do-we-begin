@@ -13,4 +13,4 @@ ffmpeg \
     -tune stillimage -c:a copy -shortest \
     "${@}" \
     "${out_file}" \
-    -y
+    -n

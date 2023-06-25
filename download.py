@@ -5,15 +5,19 @@ import json
 import subprocess
 import urllib.request
 from datetime import datetime
+from pathlib import Path
 
 import podcastparser
 
 
 UPDATE_FEED = False
 
+DIRECTORY_DOWNLOADS = Path("downloads/")
+DIRECTORY_MERGED = Path("merged/")
 FEED_JSON_FILE = "feed.json"
 URLS_FILE = "urls.txt"
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
+SUFFIX_MERGED_VIDEO = ".mp4"
 
 Episodes = list[dict]
 
@@ -75,10 +79,19 @@ def get_metadata_arguments(episode: dict) -> list[str]:
 def merge_episode(episode: dict):
     title = episode["title"]
     print(f"Merging episode {title}")
-    # todo
-    mp3_file_path = ""
-    jpg_file_path = ""
-    out_file_path = ""
+
+    # mp3 in
+    mp3_url = episode["enclosures"][0]["url"]
+    mp3_file_name = Path(mp3_url).name
+    mp3_file_path = DIRECTORY_DOWNLOADS / mp3_file_name
+    # jpg in
+    jpg_url = episode["episode_art_url"]
+    jpg_file_name = Path(jpg_url).name
+    jpg_file_path = DIRECTORY_DOWNLOADS / jpg_file_name
+    # mp4 out
+    out_file_name = Path(title).with_suffix(SUFFIX_MERGED_VIDEO)
+    out_file_path = DIRECTORY_MERGED / out_file_name
+
     metadata_args = get_metadata_arguments(episode)
 
     args = [
@@ -106,13 +119,14 @@ def main():
     episodes = feed["episodes"]
     print("got episode list")
 
-    print("writing download urls to file")
-    sort_episodes(episodes)
-    urls = get_download_urls(episodes)
-    lines = (u + "\n" for u in urls)
-    with open(URLS_FILE, "w") as file:
-        file.writelines(lines)
-    print("wrote download urls to file")
+    if UPDATE_FEED:
+        print("writing download urls to file")
+        sort_episodes(episodes)
+        urls = get_download_urls(episodes)
+        lines = (u + "\n" for u in urls)
+        with open(URLS_FILE, "w") as file:
+            file.writelines(lines)
+        print("wrote download urls to file")
 
     print("merging all episodes")
     for ep in episodes:
