@@ -1,26 +1,28 @@
 #!/usr/bin/env python
 
 
+import json
 import urllib.request
 from datetime import datetime
 
 import podcastparser
 
 
+UPDATE_FEED = False
+
+FEED_JSON_FILE = "feed.json"
 URLS_FILE = "urls.txt"
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
 
 Episodes = list[dict]
 
 
-def get_episodes() -> Episodes:
+def get_feed() -> dict:
     feedurl = URL_RSS
     # https://podcastparser.readthedocs.io/en/latest/#example
     # https://podcastparser.readthedocs.io/en/latest/#podcastparser.parse
     parsed = podcastparser.parse(feedurl, urllib.request.urlopen(feedurl))
-
-    episodes = parsed["episodes"]
-    return episodes
+    return parsed
 
 
 def sort_episodes(episodes: Episodes, reverse: bool = False):
@@ -69,15 +71,17 @@ def get_metadata_arguments(episode: dict, feed: dict) -> list[str]:
     return args
 
 
-# todo: could make a thing instead where it saves the podcast data to json
-# not worth saving to json, just re-get the rss.
-# then you can pick which one to merge by episode number, and it gets the file names from the json
-# then does it!
-
-
 def main():
     print("getting episode list")
-    episodes = get_episodes()
+    if UPDATE_FEED:
+        feed = get_feed()
+        with open(FEED_JSON_FILE, "w") as file:
+            json.dump(feed, file, indent=4)
+            file.write("\n")
+    else:
+        with open(FEED_JSON_FILE) as file:
+            feed = json.load(file)
+    episodes = feed["episodes"]
     print("got episode list")
 
     print("writing download urls to file")
