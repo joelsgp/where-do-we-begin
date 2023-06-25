@@ -29,4 +29,17 @@ for caption in caps:
     if speaker:
         caps_by_speaker[speaker].append(caption)
 
-print(caps_by_speaker)
+
+def captions_to_label_track(captions: list[webvtt.Caption]) -> list[str]:
+    # https://manual.audacityteam.org/man/importing_and_exporting_labels.html
+    labels = []
+    for cap in captions:
+        lab = f"{cap.start_in_seconds} → {cap.end_in_seconds} → \n"
+        labels.append(lab)
+    return labels
+
+
+for name, captions in caps_by_speaker.items():
+    with open(f"labels/{name}.txt", "w") as file:
+        label_lines = captions_to_label_track(captions)
+        file.writelines(label_lines)
