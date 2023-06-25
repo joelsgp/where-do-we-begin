@@ -37,8 +37,11 @@ ok it works if you do toggle Tracks > Sync-Lock Audio to ON
 1. select the source audio track and one of the label track
 2. split cut from labelled audio
 3. paste into a new audio track
+4. Mix and Render the new track, to avoid killing your pc with loads of separate clips
 4. repeat for each speaker's label track. you should have one audio track for each speaker and the leftover original track for negative space.
 5. export each audio track separately
+
+todo make a macro for this
 
 
 ## links
