@@ -11,7 +11,7 @@ from pathlib import Path
 import podcastparser
 
 
-UPDATE_FEED = False
+UPDATE_FEED = True
 
 DIRECTORY_DOWNLOADS = Path("downloads/")
 DIRECTORY_MERGED = Path("merged/")

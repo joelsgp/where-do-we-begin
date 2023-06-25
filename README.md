@@ -1,4 +1,27 @@
-# windows xp mode
+# where do we begin
+## files
+- `download.py` - script for downloading podcast audio and cover images, then calling a script to merge them with ffmpeg.
+- etc.
+
+# todo make it make sense
+Example use:
+```shell
+# create the file urls.txt
+python download.py
+# download the urls in urls.txt
+./download-wget.sh
+# merge audio and images into video
+# this uses merge-test.sh which you can also run manually
+python download.py
+# at this point upload the video to youtube
+# upload the transcript
+# and download the resulting aligned subtitles
+# create label tracks from subtitles
+python separate.py
+```
+
+## links
+### windows xp mode
 - official
     - dead link http://www.microsoft.com/windows/virtual-pc/download.aspx
     - references it
@@ -8,21 +31,22 @@
     - https://archive.org/details/windows-xp-mode_20200907
     - https://archive.org/download/windows-xp-mode_20200907/WindowsXPMode_en-us.zip
     - https://archive.org/download/windows-xp-mode_20200907/WindowsXPMode_en-us.zip/WindowsXPMode_en-us.exe
-# ISO
+### ISO
 - archive.org
     - https://archive.org/details/WinXPProSP3x86
     - https://archive.org/download/WinXPProSP3x86/en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso
     - the torrent is MUCH faster. lots of seeders
     - https://ia902601.us.archive.org/19/items/WinXPProSP3x86/WinXPProSP3x86_archive.torrent
-# activation key
+### activation key
 - https://gist.github.com/denizssch/72ec2aa1c5d0a84ffb57076f7dbf30d6
     - K6C2K-KY62K-DQR84-RD4QV-QB74Q
     - recommened by clowdcap, works
-# virtualbox stuff
+### virtualbox stuff
 - https://www.virtualbox.org/wiki/Testbuilds
-# notes
+
+## notes
 the basic display resolution for xp is 800x600
-## visualisers
+### visualisers
 Ambient does NOT go fullscreen. this is not a driver issue or anything, it's just htat visualiser
 OLDEST
 - Ambience
@@ -31,7 +55,7 @@ OLDEST
 - Alchemy
 NEWEST
 
-## keyboard shortcuts
+### keyboard shortcuts
 CTRL+P play
 CTRL+S stp
 CTRL+B back
@@ -57,7 +81,7 @@ costs money
 like £15 per hour of audio
 https://www.simonsaysai.com/help/4176715-automatic-speaker-identification
 
-# uploads
+### uploads
 - podcast episode with visualisation
     https://youtu.be/740mzzQB0jQ
 - demo of all visualisations
