@@ -99,3 +99,13 @@ tags
 I should ask rtvs by podcast email "if you were a wmp visualiser which one would you be" and ask permission to run the stream at the same time
 
 could fork podcastparser to make it return a typed dict
+
+I have to do all the podcast uploads to yt with still images before making visualisers, cause I need it to align the subs to split the tracks. UNLESS I can find a local tool to do it??
+for splitting, I should get my program to just make an audacity label track. that simplifies things, then I do the hard part manually in audacity so I don’t have to fucking write it.
+not free software https://www.captionhub.com/blog-post/automatically-align-transcript
+“video transcript alignment”
+only one github star, python2.7 + perl :/// https://github.com/polizoto/align_transcript
+https://pypi.org/project/subaligner/
+here we go https://github.com/baxtree/subaligner
+https://github.com/amiaopensource/An_Archivists_Guide_To_Matroska/blob/master/metadata.md#adding-tags-with-ffmpeg
+
