@@ -1,4 +1,7 @@
 #!/bin/bash
 set -eux
 
-wget --show-progress --input-file=urls.txt
+wget \
+    --show-progress \
+    --directory-prefix=downloads/ \
+    --input-file=urls.txt
