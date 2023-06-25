@@ -10,6 +10,7 @@ DIRECTORY_LABELS = Path("labels/")
 
 
 def filter_captions_by_speaker(speakers: list[str], captions: list[Caption]) -> dict[str, list[Caption]]:
+    # todo handle captions like [05:00] and [music plays]
     speakers_pipes = "|".join(speakers)
     speaker_label = re.compile(f"^({speakers_pipes}): ")
 
