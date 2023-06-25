@@ -47,6 +47,7 @@ def get_download_urls(episodes: Episodes):
 
 
 def get_metadata_arguments(episode: dict) -> list[str]:
+    # https://ffmpeg.org/doxygen/trunk/group__metadata__api.html
     mapping = {
         "artist": "itunes_author",
         "comment": "subtitle",
@@ -58,8 +59,12 @@ def get_metadata_arguments(episode: dict) -> list[str]:
 
     # from mapping
     for k, v in mapping.items():
-        metadata[k] = episode[v]
+        if value := episode.get(v) is not None:
+            metadata[k] = value
     # constant
+    mp3_url = episode["enclosures"][0]["url"]
+    metadata["filename"] = mp3_url
+
     metadata["album"] = "RTVS Podcasts"
     metadata["language"] = "eng"
     # special
