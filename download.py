@@ -2,6 +2,7 @@
 
 
 import urllib.request
+from datetime import datetime
 
 import podcastparser
 
@@ -37,11 +38,39 @@ def get_download_urls(episodes: Episodes):
     return urls
 
 
-# todo fuse em with ffmpeg
-# todo embed metadata - author,, date etc.
+def get_metadata_arguments(episode: dict, feed: dict) -> list[str]:
+    mapping = {
+        "artist": "itunes_author",
+        "comment": "subtitle",
+        "title": "title",
+        "track": "number",
+    }
+
+    metadata = {}
+
+    # from mapping
+    for k, v in mapping.items():
+        metadata[k] = episode[v]
+    # constant
+    metadata["album"] = "RTVS Podcasts"
+    metadata["language"] = "eng"
+    # special
+    published = episode["published"]
+    published_datetime = datetime.utcfromtimestamp(published)
+    formatted = published_datetime.isoformat()
+    metadata["date"] = formatted
+
+    # make ffmpeg command line arguments
+    args = []
+    for k, v in metadata.items():
+        args.append("-metadata")
+        args.append(f"{k}={v}")
+
+    return args
 
 
 # todo: could make a thing instead where it saves the podcast data to json
+# not worth saving to json, just re-get the rss.
 # then you can pick which one to merge by episode number, and it gets the file names from the json
 # then does it!
 
