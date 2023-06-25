@@ -95,3 +95,5 @@ AHAH:
 Title:
 > 24/7 where do we begin podcast with visualiser. rtvs podcast (wayneradiotv, baaulp, trog, log, gir)
 tags
+
+I should ask rtvs by podcast email "if you were a wmp visualiser which one would you be" and ask permission to run the stream at the same time
