@@ -3,6 +3,7 @@
 import podcastparser
 import requests
 
+URLS_FILE = "urls.txt"
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
 
 
@@ -18,11 +19,22 @@ def get_episodes() -> list[dict]:
     return episodes
 
 
-def download(url: str, file_path: str):
+def download_with_requests(url: str, file_path: str):
     with requests.get(url, stream=True) as response:
         with open(file_path, "wb") as file:
             for chunk in response.iter_content():
                 file.write(chunk)
+
+
+def download_write_to_file(url: str, file_path: str):
+    # then you can do `wget --input-file=<file>`
+    with open(URLS_FILE, "a") as file:
+        file.write(url)
+        file.write("\n")
+
+
+def download(url: str, file_path: str):
+    download_write_to_file(url, file_path)
 
 
 def download_episode(episode: dict):
@@ -44,6 +56,7 @@ def download_episode(episode: dict):
 
     # todo fuse em with ffmpeg
     # todo embed metadata - author,, date etc.
+    print("done episode")
 
 
 def main():
