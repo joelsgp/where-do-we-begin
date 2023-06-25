@@ -37,7 +37,7 @@ def captions_to_label_track(captions: list[Caption]) -> list[str]:
 
 def main():
     # test values
-    sub_file = "subtitles/test.sbv"
+    sub_file = "subtitles/Where Do We Begin? Episode #1: The Future Of Podcasting.sbv"
     speakers = [
         "Baaulp",
         "Gir",
