@@ -2,6 +2,7 @@
 
 
 import json
+import subprocess
 import urllib.request
 from datetime import datetime
 
@@ -40,7 +41,7 @@ def get_download_urls(episodes: Episodes):
     return urls
 
 
-def get_metadata_arguments(episode: dict, feed: dict) -> list[str]:
+def get_metadata_arguments(episode: dict) -> list[str]:
     mapping = {
         "artist": "itunes_author",
         "comment": "subtitle",
@@ -71,6 +72,27 @@ def get_metadata_arguments(episode: dict, feed: dict) -> list[str]:
     return args
 
 
+def merge_episode(episode: dict):
+    title = episode["title"]
+    print(f"Merging episode {title}")
+    # todo
+    mp3_file_path = ""
+    jpg_file_path = ""
+    out_file_path = ""
+    metadata_args = get_metadata_arguments(episode)
+
+    args = [
+        "./merge-test.sh",
+        mp3_file_path,
+        jpg_file_path,
+        out_file_path,
+        *metadata_args,
+    ]
+
+    subprocess.run(args)
+    print("merged episode")
+
+
 def main():
     print("getting episode list")
     if UPDATE_FEED:
@@ -91,6 +113,11 @@ def main():
     with open(URLS_FILE, "w") as file:
         file.writelines(lines)
     print("wrote download urls to file")
+
+    print("merging all episodes")
+    for ep in episodes:
+        merge_episode(ep)
+    print("merged all episodes")
 
 
 if __name__ == "__main__":

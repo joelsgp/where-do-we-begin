@@ -1,9 +1,16 @@
 #!/bin/bash
 set -eux
 
+mp3_file="$1"
+jpg_file="$2"
+out_file="$3"
+shift 3
+
+
 ffmpeg \
-    -i The_Podcast_1_-_The_Future_Of_Podcasting_Fixed_.mp3 \
-    -framerate 1/10 -loop 1 -i Where_do_we_begin_ep1.jpg \
+    -i "${mp3_file}" \
+    -framerate 1/10 -loop 1 -i "${jpg_file}" \
     -tune stillimage -c:a copy -shortest \
-    test.mp4 \
+    "${@}" \
+    "${out_file}" \
     -y
