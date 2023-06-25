@@ -3,6 +3,7 @@
 
 import json
 import subprocess
+import sys
 import urllib.request
 from datetime import datetime
 from pathlib import Path
@@ -102,7 +103,7 @@ def merge_episode(episode: dict):
         *metadata_args,
     ]
 
-    subprocess.run(args)
+    subprocess.run(args, stdout=sys.stdout, stderr=sys.stderr)
     print("merged episode")
 
 
@@ -129,6 +130,7 @@ def main():
         print("wrote download urls to file")
 
     print("merging all episodes")
+    DIRECTORY_MERGED.mkdir(exist_ok=True)
     for ep in episodes:
         merge_episode(ep)
     print("merged all episodes")
