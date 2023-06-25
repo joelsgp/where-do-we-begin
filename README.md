@@ -34,14 +34,21 @@ https://manual.audacityteam.org/man/error_insufficient_space_in_track.html
 I could duplicate the main track for each speaker then split delte the inverse? seems impractical
 
 ok it works if you do toggle Tracks > Sync-Lock Audio to ON
+you might wanna mix down to mono to speed things up too
+first mark out the first time each speaker talks, for offset. copy-paste the label track or whatever
 1. select the source audio track and one of the label track
+2. create a new stereo track and solo it
 2. split cut from labelled audio
-3. paste into a new audio track
-4. immediately export the track, then delete it, to avoid killing your pc
+3. paste into a new track. make sure to select the point at which it starts, to get the right offset
+4. immediately export, then clear the out-track, to avoid killing your pc
+5. finally, export what remains of the original track
 
+
+mix and render doesn't preserve start offset either
 
 todo make a macro for this
 
+ep. 1 is 01:42:39 and the intro is 24.019s
 
 ## links
 ### windows xp mode
