@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ef0e1e6104116f14519021f5b148f9b9b97bdae7f4b9a6d44fe8575a6cd74ea2"
+            "sha256": "895fc52e00224c047c704bc7240c7d54df89937e5e38c71834a3708f403633c0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,12 @@
         ]
     },
     "default": {
+        "docopt": {
+            "hashes": [
+                "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"
+            ],
+            "version": "==0.6.2"
+        },
         "podcastparser": {
             "hashes": [
                 "sha256:2b9acb60ad46cff5230c0a3609d37e934674644bfcd5d13b18c423917e9f13d7",
@@ -23,6 +29,13 @@
             ],
             "index": "pypi",
             "version": "==0.6.10"
+        },
+        "webvtt-py": {
+            "hashes": [
+                "sha256:5cf9da2a8c34bc789db599377be87b228b7e4734c629597edd27a8054e004a57"
+            ],
+            "index": "pypi",
+            "version": "==0.4.6"
         }
     },
     "develop": {}
