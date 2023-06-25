@@ -127,9 +127,9 @@ def main():
     episodes = feed["episodes"]
     print("got episode list")
 
+    sort_episodes(episodes)
     if UPDATE_FEED:
         print("writing download urls to file")
-        sort_episodes(episodes)
         urls = get_download_urls(episodes)
         lines = (u + "\n" for u in urls)
         with open(URLS_FILE, "w") as file:
