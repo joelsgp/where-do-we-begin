@@ -23,9 +23,7 @@ def get_episodes() -> Episodes:
 
 
 def sort_episodes(episodes: Episodes, reverse: bool = False):
-    # gameclam and elden ring eps don't have em
-    # print(l := list(ep for ep in episodes if not ep.get("number")))
-    episodes.sort(key=lambda ep: ep["number"], reverse=reverse)
+    episodes.sort(key=lambda ep: ep["published"], reverse=reverse)
 
 
 def get_download_urls(episodes: Episodes):
