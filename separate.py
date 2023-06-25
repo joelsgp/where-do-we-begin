@@ -30,7 +30,7 @@ def captions_to_label_track(captions: list[Caption]) -> list[str]:
     # https://manual.audacityteam.org/man/importing_and_exporting_labels.html
     labels = []
     for cap in captions:
-        lab = f"{cap.start_in_seconds} → {cap.end_in_seconds} → \n"
+        lab = f"{cap.start_in_seconds}\t{cap.end_in_seconds}\n"
         labels.append(lab)
     return labels
 
@@ -58,3 +58,7 @@ def main():
         with open(file_path, "w") as file:
             label_lines = captions_to_label_track(captions)
             file.writelines(label_lines)
+
+
+if __name__ == '__main__':
+    main()
