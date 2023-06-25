@@ -51,6 +51,7 @@ def get_metadata_arguments(episode: dict) -> list[str]:
     mapping = {
         "artist": "itunes_author",
         "comment": "subtitle",
+        "purl": "link",
         "title": "title",
         "track": "number",
     }
@@ -59,7 +60,8 @@ def get_metadata_arguments(episode: dict) -> list[str]:
 
     # from mapping
     for k, v in mapping.items():
-        if value := episode.get(v) is not None:
+        value = episode.get(v)
+        if value is not None:
             metadata[k] = value
     # constant
     mp3_url = episode["enclosures"][0]["url"]
