@@ -1,7 +1,11 @@
 # downloading
+# firefox
 *.part
+# wget
+*.1
 # downloaded
 *.jpg
+*.png
 *.mp3
 # converted
 *.mp4

@@ -59,6 +59,11 @@ def download_episode(episode: dict):
     print("done episode")
 
 
+# todo: could make a thing instead where it saves the podcast data to json
+# then you can pick which one to merge by episode number, and it gets the file names from the json
+# then does it!
+
+
 def main():
     print("getting episode list")
     episodes = get_episodes()
