@@ -3,7 +3,8 @@
 - `download.py` - script for downloading podcast audio and cover images, then calling a script to merge them with ffmpeg.
 - etc.
 
-# todo make it make sense
+## usage
+### scripts
 Example use:
 ```shell
 # create the file urls.txt
@@ -19,6 +20,26 @@ python download.py
 # create label tracks from subtitles
 python separate.py
 ```
+
+### audacity
+working with the labelled audio
+use Edit > Labelled Audio > Split Cut
+https://manual.audacityteam.org/man/edit_menu_labeled_audio.html
+
+for some reason I'm getting an error "There is not enough room available to paste the selection"
+not trying to paste just trying to cut
+https://manual.audacityteam.org/man/error_insufficient_space_in_track.html
+"Split delete" works fine.
+
+I could duplicate the main track for each speaker then split delte the inverse? seems impractical
+
+ok it works if you do toggle Tracks > Sync-Lock Audio to ON
+1. select the source audio track and one of the label track
+2. split cut from labelled audio
+3. paste into a new audio track
+4. repeat for each speaker's label track. you should have one audio track for each speaker and the leftover original track for negative space.
+5. export each audio track separately
+
 
 ## links
 ### windows xp mode
