@@ -1,62 +1,43 @@
 #!/usr/bin/env python
 
+
+import urllib.request
+
 import podcastparser
-import requests
+
 
 URLS_FILE = "urls.txt"
 URL_RSS = "https://feed.podbean.com/wayneradiotv/feed.xml"
 
+Episodes = list[dict]
 
-def get_episodes() -> list[dict]:
-    url = URL_RSS
+
+def get_episodes() -> Episodes:
+    feedurl = URL_RSS
     # https://podcastparser.readthedocs.io/en/latest/#example
     # https://podcastparser.readthedocs.io/en/latest/#podcastparser.parse
-    with requests.get(url, stream=True) as response:
-        response.raw.decode_content = True
-        parsed = podcastparser.parse(url, response.raw)
+    parsed = podcastparser.parse(feedurl, urllib.request.urlopen(feedurl))
 
     episodes = parsed["episodes"]
     return episodes
 
 
-def download_with_requests(url: str, file_path: str):
-    with requests.get(url, stream=True) as response:
-        with open(file_path, "wb") as file:
-            for chunk in response.iter_content():
-                file.write(chunk)
+# def sort_episodes(episodes: Episodes):
 
 
-def download_write_to_file(url: str, file_path: str):
-    # then you can do `wget --input-file=<file>`
-    with open(URLS_FILE, "a") as file:
-        file.write(url)
-        file.write("\n")
+def get_download_urls(episodes: Episodes):
+    urls = []
+    for ep in episodes:
+        mp3_url = ep["enclosures"][0]["url"]
+        jpg_url = ep["episode_art_url"]
+        urls.append(mp3_url)
+        urls.append(jpg_url)
+
+    return urls
 
 
-def download(url: str, file_path: str):
-    download_write_to_file(url, file_path)
-
-
-def download_episode(episode: dict):
-    title = episode["title"]
-    print(f"doing episode '{title}'")
-
-    mp3_url = episode["enclosures"][0]["url"]
-    mp3_path = f"{title}.mp3"
-    # easier to skip on spag entirely
-    print("downloading audio")
-    download(mp3_url, mp3_path)
-    print("downloaded audio")
-
-    jpg_url = episode["episode_art_url"]
-    jpg_path = f"{title}.jpg"
-    print("downloading image")
-    download(jpg_url, jpg_path)
-    print("downloaded image")
-
-    # todo fuse em with ffmpeg
-    # todo embed metadata - author,, date etc.
-    print("done episode")
+# todo fuse em with ffmpeg
+# todo embed metadata - author,, date etc.
 
 
 # todo: could make a thing instead where it saves the podcast data to json
@@ -68,8 +49,13 @@ def main():
     print("getting episode list")
     episodes = get_episodes()
     print("got episode list")
-    for ep in episodes:
-        download_episode(ep)
+
+    print("writing download urls to file")
+    urls = get_download_urls(episodes)
+    urls = (u + "\n" for u in urls)
+    with open(URLS_FILE, "w") as file:
+        file.writelines(urls)
+    print("wrote download urls to file")
 
 
 if __name__ == "__main__":

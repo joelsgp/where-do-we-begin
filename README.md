@@ -97,3 +97,5 @@ Title:
 tags
 
 I should ask rtvs by podcast email "if you were a wmp visualiser which one would you be" and ask permission to run the stream at the same time
+
+could fork podcastparser to make it return a typed dict
