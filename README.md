@@ -113,6 +113,14 @@ how to record multiple windows at once?
 - recording one-by-one - seems to be the main option
 - recording with virtualbox - kills performance
 - multiple obs instances - is this possible?
+- in-vm recorder - might be possible. have to find an old download
+    - no OBS but these forum topics are funny https://obsproject.com/forum/threads/windows-xp-please-read.978/
+    - https://www.reddit.com/r/windowsxp/comments/ps72dl/screen_recording_software/
+    - http://web.archive.org/web/20221209193816/https://www.reddit.com/r/windowsxp/comments/ps72dl/screen_recording_software/
+    - https://fraps.com/download.php
+- multiple vms, record all at once then sync in edit
+
+do this tomorrow, don't have time to run it today.
 
 
 ### keyboard shortcuts
