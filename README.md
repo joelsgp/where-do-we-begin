@@ -73,6 +73,9 @@ ep. 1 is 01:42:39 and the intro is 24.019s
     - recommened by clowdcap, works
 ### virtualbox stuff
 - https://www.virtualbox.org/wiki/Testbuilds
+### windows media player
+- https://wmpskinsarchive.neocities.org/
+
 
 ## notes
 the basic display resolution for xp is 800x600
@@ -84,6 +87,33 @@ OLDEST
 - Battery
 - Alchemy
 NEWEST
+
+1920/3 = 640
+1080/2 = 540
+640x540
+
+gonna use guest size
+1024x768
+
+crop offset 192, 114
+
+Base -- Bars
+rest alphabetical, vote later
+Baaulp - Alchemy
+Gir -- Ambience
+Log -- Battery
+Trog -- Plenoptic
+Wayne - Alchemy
+
+mm not enough for each unique
+all alchemy?
+
+how to record multiple windows at once?
+- multiple vms - won't be able to sync them all
+- recording one-by-one - seems to be the main option
+- recording with virtualbox - kills performance
+- multiple obs instances - is this possible?
+
 
 ### keyboard shortcuts
 CTRL+P play
