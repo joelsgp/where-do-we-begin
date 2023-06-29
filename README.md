@@ -91,6 +91,7 @@ NEWEST
 1920/3 = 640
 1080/2 = 540
 640x540
+obs transform shows 1280 right, 540 bottom
 
 gonna use guest size
 1024x768
@@ -126,11 +127,26 @@ how to record multiple windows at once?
 
 do this tomorrow, don't have time to run it today.
 
+could play at 2x speed 60fps and halve it to 30fps in edit. I dont' think this is worthwhile.
+
+lovely how windows xp mute doesn't affect the login sound even with single user. I guess there's a settings for that
+good thing vbox remembers window size. of course, I'm sure if it didn't there would just be yet another method/workaround
+could disable effects etc. to improve performance?
+
 ```cmd
 start wmplayer "C:\Documents and Settings\Joel\My Documents\My Music\1\Base.wma" /fullscreen
 ```
 remove mouse first
 have to run this twice for it to fullscreen right
+
+how to do it:
+1. create a shortcut to Z: (shared folder) and a shortcut to "C:\Documents and Settings\Joel\Start Menu\Programs\Startup" for convenience
+2. create a vm clone for each speaker
+3. place the vm's respective script in the startup folder
+4. now that vm will play that speaker on startup! and using the shared folder you'll never have to edit that vm
+
+`VBoxManage setextradata global GUI/SuppressMessages confirmGoingFullscreen,remindAboutMouseIntegration,remindAboutAutoCapture`
+see https://forums.virtualbox.org/viewtopic.php?f=7&t=107743
 
 ### keyboard shortcuts
 CTRL+P play
