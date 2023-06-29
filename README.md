@@ -123,6 +123,7 @@ how to record multiple windows at once?
 6. multiple vms, record all at once then sync in edit
 7. see what Qemu offers
 8. write a script to syncronise it
+    - could do this with a virtualbox interface, or with batch scripting over the local network
 9. running them all in one vm - can't work, need fullscreen or crop. could fix it with editing too like 6.
 
 do this tomorrow, don't have time to run it today.
@@ -142,8 +143,12 @@ have to run this twice for it to fullscreen right
 how to do it:
 1. create a shortcut to Z: (shared folder) and a shortcut to "C:\Documents and Settings\Joel\Start Menu\Programs\Startup" for convenience
 2. create a vm clone for each speaker
-3. place the vm's respective script in the startup folder
+3. place the vm's respective script in the startup folder. 
+    - better yet, place a shortcut to the script in the shared fodler, so you can edit the script without updating it in the vm
+    - if you don't use a shared folder you could use some vbox script to edit the vhd file directly. to update scripts
 4. now that vm will play that speaker on startup! and using the shared folder you'll never have to edit that vm
+5. start all the clones at once, get the windows set up on the desktop and in obs
+6. reset them all to sync
 
 `VBoxManage setextradata global GUI/SuppressMessages confirmGoingFullscreen,remindAboutMouseIntegration,remindAboutAutoCapture`
 see https://forums.virtualbox.org/viewtopic.php?f=7&t=107743
