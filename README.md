@@ -111,6 +111,7 @@ all alchemy?
 how to record multiple windows at once?
 - multiple vms - won't be able to sync them all
 - recording one-by-one - seems to be the main option
+    - can do it unattended by putting them in a playlist
 - recording with virtualbox - kills performance
 - multiple obs instances - is this possible?
 - in-vm recorder - might be possible. have to find an old download
@@ -119,6 +120,9 @@ how to record multiple windows at once?
     - http://web.archive.org/web/20221209193816/https://www.reddit.com/r/windowsxp/comments/ps72dl/screen_recording_software/
     - https://fraps.com/download.php
 - multiple vms, record all at once then sync in edit
+- see what Qemu offers
+- write a script to syncronise it
+- running them all in one vm - can't work, need fullscreen or crop. could fix it with editing too like hte previous one
 
 do this tomorrow, don't have time to run it today.
 
