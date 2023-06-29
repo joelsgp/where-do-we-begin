@@ -139,6 +139,8 @@ start wmplayer "C:\Documents and Settings\Joel\My Documents\My Music\1\Base.wma"
 ```
 remove mouse first
 have to run this twice for it to fullscreen right
+disable mouse capture in vbox and in obs first
+and in tom and jerry lol!!
 
 how to do it:
 1. create a shortcut to Z: (shared folder) and a shortcut to "C:\Documents and Settings\Joel\Start Menu\Programs\Startup" for convenience
