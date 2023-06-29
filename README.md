@@ -155,6 +155,8 @@ how to do it:
 `VBoxManage setextradata global GUI/SuppressMessages confirmGoingFullscreen,remindAboutMouseIntegration,remindAboutAutoCapture`
 see https://forums.virtualbox.org/viewtopic.php?f=7&t=107743
 
+https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/64/Fury_and_the_WSC.png/revision/latest/scale-to-width-down/1000?cb=20160228230156
+
 ### keyboard shortcuts
 CTRL+P play
 CTRL+S stp
