@@ -126,6 +126,11 @@ how to record multiple windows at once?
 
 do this tomorrow, don't have time to run it today.
 
+```cmd
+start wmplayer "C:\Documents and Settings\Joel\My Documents\My Music\1\Base.wma" /fullscreen
+```
+remove mouse first
+have to run this twice for it to fullscreen right
 
 ### keyboard shortcuts
 CTRL+P play
