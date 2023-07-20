@@ -5,13 +5,12 @@ import json
 import subprocess
 import sys
 import urllib.request
+from argparse import ArgumentParser
 from datetime import datetime
 from pathlib import Path
 
 import podcastparser
 
-
-UPDATE_FEED = True
 
 DIRECTORY_DOWNLOADS = Path("downloads/")
 DIRECTORY_MERGED = Path("merged/")
@@ -116,9 +115,19 @@ def merge_episode(episode: dict):
     print("merged episode")
 
 
+def get_parser() -> ArgumentParser:
+    parser = ArgumentParser()
+    parser.add_argument("--update-feed", action="store_true")
+    return parser
+
+
 def main():
+    parser = get_parser()
+    args = parser.parse_args()
+    update_feed: bool = args.update_feed
+
     print("getting episode list")
-    if UPDATE_FEED:
+    if update_feed:
         feed = get_feed()
         with open(FEED_JSON_FILE, "w") as file:
             json.dump(feed, file, indent=4)
@@ -130,7 +139,7 @@ def main():
     print("got episode list")
 
     sort_episodes(episodes)
-    if UPDATE_FEED:
+    if update_feed:
         print("writing download urls to file")
         urls = get_download_urls(episodes)
         lines = (u + "\n" for u in urls)
