@@ -6,9 +6,16 @@ from download_transcripts import get_page_list
 
 episodes = get_episodes(False)
 page_list = get_page_list()
-for episode, page in zip(episodes, page_list):
-    input()
-    episode_link = episode["link"]
+
+number = 1
+for ep in episodes:
+    if ep["number"] != number:
+        continue
+    input(number)
+
+    episode_link = ep["link"]
+    page = page_list[number - 1]
+
     description = f"""{episode_link}
 
 {page}
