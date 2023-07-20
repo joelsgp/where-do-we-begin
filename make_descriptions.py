@@ -9,7 +9,7 @@ page_list = get_page_list()
 
 number = 1
 for ep in episodes:
-    if ep["number"] != number:
+    if ep.get("number") != number:
         continue
     input(number)
 
@@ -25,3 +25,5 @@ https://www.youtube.com/playlist?list=PLnKVDZ8hWc28qn1rmbvuR1Kbbj0wYwQJO"""
 
     print(description)
     pyperclip.copy(description)
+
+    number += 1
