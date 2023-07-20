@@ -8,6 +8,7 @@ podcastparser = "*"
 webvtt-py = "*"
 requests = "*"
 beautifulsoup4 = "*"
+pyperclip = "*"
 
 [dev-packages]
 

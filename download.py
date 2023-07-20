@@ -115,6 +115,22 @@ def merge_episode(episode: dict):
     print("merged episode")
 
 
+def get_episodes(update_feed: bool) -> Episodes:
+    if update_feed:
+        feed = get_feed()
+        with open(FEED_JSON_FILE, "w") as file:
+            json.dump(feed, file, indent=4)
+            file.write("\n")
+    else:
+        with open(FEED_JSON_FILE) as file:
+            feed = json.load(file)
+    episodes = feed["episodes"]
+
+    sort_episodes(episodes)
+
+    return episodes
+
+
 def get_parser() -> ArgumentParser:
     parser = ArgumentParser()
     parser.add_argument("--update-feed", action="store_true")
@@ -127,18 +143,9 @@ def main():
     update_feed: bool = args.update_feed
 
     print("getting episode list")
-    if update_feed:
-        feed = get_feed()
-        with open(FEED_JSON_FILE, "w") as file:
-            json.dump(feed, file, indent=4)
-            file.write("\n")
-    else:
-        with open(FEED_JSON_FILE) as file:
-            feed = json.load(file)
-    episodes = feed["episodes"]
+    episodes = get_episodes(update_feed)
     print("got episode list")
 
-    sort_episodes(episodes)
     if update_feed:
         print("writing download urls to file")
         urls = get_download_urls(episodes)

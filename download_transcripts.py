@@ -22,7 +22,9 @@ def get_page_list() -> list[str]:
     hyperlinks = ol.find_all("a")
     page_list = [a.attrs["href"] for a in hyperlinks]
 
-    return page_list
+    qualified_pages = [URL_BASE + loc for loc in page_list]
+
+    return qualified_pages
 
 
 def filter_paragraphs(paragraph: Tag) -> bool:
@@ -54,8 +56,7 @@ def main():
     transcripts_dir = Path("transcripts/")
     transcripts_dir.mkdir(exist_ok=True)
 
-    pages = get_page_list()
-    qualified_pages = [URL_BASE + loc for loc in pages]
+    qualified_pages = get_page_list()
 
     for page in qualified_pages:
         print(page)
