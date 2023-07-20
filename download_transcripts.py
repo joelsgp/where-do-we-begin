@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 import requests
 from bs4 import BeautifulSoup, Tag
@@ -30,15 +31,17 @@ def filter_paragraphs(paragraph: Tag) -> bool:
     return time_marker is None
 
 
-def get_transcript(page_url: str) -> str:
+def get_transcript(page_url: str) -> Optional[str]:
     response = requests.get(page_url)
     soup = BeautifulSoup(response.text, features="html.parser")
 
     div_mw_content_text = soup.find("div", id="mw-content-text")
     span_transcript = div_mw_content_text.find("span", id="Transcript")
-    h2_episode_list = span_transcript.parent
+    if span_transcript is None:
+        return None
+    h2_transcript = span_transcript.parent
 
-    paragraphs = h2_episode_list.find_next_siblings("p")
+    paragraphs = h2_transcript.find_next_siblings("p")
     paragraphs = filter(filter_paragraphs, paragraphs)
 
     paragraph_text = (p.text for p in paragraphs)
@@ -56,7 +59,12 @@ def main():
 
     for page in qualified_pages:
         print(page)
+
         transcript = get_transcript(page)
+        if transcript is None:
+            print("No transcript header!")
+            continue
+
         name = page.split("/")[-1]
         path = transcripts_dir.joinpath(name).with_suffix(".txt")
 
