@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import requests
 from bs4 import BeautifulSoup, Tag
 
@@ -46,10 +48,20 @@ def get_transcript(page_url: str) -> str:
 
 
 def main():
+    transcripts_dir = Path("transcripts/")
+    transcripts_dir.mkdir(exist_ok=True)
+
     pages = get_page_list()
     qualified_pages = [URL_BASE + loc for loc in pages]
-    transcript = get_transcript(qualified_pages[0])
-    print(transcript)
+
+    for page in qualified_pages:
+        print(page)
+        transcript = get_transcript(page)
+        name = page.split("/")[-1]
+        path = transcripts_dir.joinpath(name).with_suffix(".txt")
+
+        with open(path, "w") as file:
+            file.write(transcript)
 
 
 if __name__ == "__main__":
