@@ -50,6 +50,13 @@ todo make a macro for this
 
 ep. 1 is 01:42:39 and the intro is 24.019s
 
+## todo
+- https://wayneradiotv.fandom.com/wiki/Category:Transcript:_Finished
+- https://wayneradiotv.fandom.com/wiki/Category:Transcript:_WIP
+- https://wayneradiotv.fandom.com/wiki/Category:Transcript:_Not_Started
+
+could add infobox to each podcast ep. preceding, number, sers etc.
+
 ## links
 ### windows xp mode
 - official

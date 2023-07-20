@@ -4,6 +4,9 @@ from download import get_episodes
 from download_transcripts import get_page_list
 
 
+# todo add original official episode description from feed?
+
+
 episodes = get_episodes(False)
 page_list = get_page_list()
 
