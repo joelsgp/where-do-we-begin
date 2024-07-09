@@ -9,6 +9,8 @@ webvtt-py = "*"
 requests = "*"
 beautifulsoup4 = "*"
 pyperclip = "*"
+tzdata = "*"
+matplotlib = "*"
 
 [dev-packages]
 
