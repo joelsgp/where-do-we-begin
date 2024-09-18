@@ -10,6 +10,7 @@ import download
 TZ = ZoneInfo("America/New_York")
 # bunch got imported on this date at the start of the feed
 EXCLUDE_DATE = date(year=2018, month=12, day=10)
+OUT_FILE = "chart.jpg"
 
 
 def get_days(feed: dict) -> list[int]:
@@ -46,7 +47,7 @@ def main():
     ax.grid(True)
 
     print("saving plot..")
-    fig.savefig("test.jpg")
+    fig.savefig(OUT_FILE)
     print("saved")
 
 
