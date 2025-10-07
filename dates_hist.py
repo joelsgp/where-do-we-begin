@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# idea: create graph of time between releases
+
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
